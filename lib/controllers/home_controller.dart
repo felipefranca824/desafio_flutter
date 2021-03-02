@@ -38,6 +38,7 @@ class HomeController extends ChangeNotifier{
       gallon = double.parse(_gallonController.value.text);
     } catch (e) {
     }
+    notifyListeners();
     print(quantify);
   }
 
