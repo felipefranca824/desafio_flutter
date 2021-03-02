@@ -44,6 +44,10 @@ class _HomeScreen extends State<HomeScreen> {
                   itemCount: _homeController.quantify,
                   itemBuilder: _buildList,
                 )),
+                RaisedButton(
+                  onPressed: (){_homeController.addListBottles();},
+                  child: Text('Enviar'),
+                  ),
               ],
             ),
           );
@@ -52,13 +56,16 @@ class _HomeScreen extends State<HomeScreen> {
 
   Widget _buildList(context, index) {
     print(index);
+    _homeController.setcontrollerTextFieldBottles(index);
     return Row(
       children: [
         Text('Garrafa ${index + 1}'),
         Expanded(
             child: TextField(
+          controller: _homeController.bottlesController[index],
           decoration: InputDecoration(),
-        ))
+        )),
+        
       ],
     );
   }
