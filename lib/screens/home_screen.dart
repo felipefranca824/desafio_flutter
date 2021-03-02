@@ -10,7 +10,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreen extends State<HomeScreen> {
-  HomeController _homeController = HomeController();
+  final HomeController _homeController = HomeController();
   @override
   Widget build(BuildContext context) {
     
@@ -27,16 +27,21 @@ class _HomeScreen extends State<HomeScreen> {
           hintText: 'Volume do Galão',
           
         ),
+        controller: _homeController.gallonController,
+        
       ),
       TextField(
         decoration: InputDecoration(
           hintText: 'Quantidade de garrafas',
           
         ),
+        controller: _homeController.quantifyController,
+        onSubmitted: _homeController.submit(),
+
       ),
       Expanded(
         child: ListView.builder(
-        itemCount: 4,
+        itemCount: _homeController.quantify,
         itemBuilder: _buildList,
       )
       ),
