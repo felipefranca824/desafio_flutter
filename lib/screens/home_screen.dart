@@ -11,6 +11,11 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreen extends State<HomeScreen> {
   final HomeController _homeController = HomeController();
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
         animation: _homeController,
@@ -36,6 +41,7 @@ class _HomeScreen extends State<HomeScreen> {
                   ),
                   controller: _homeController.quantifyController,
                   onSubmitted: (valeu) {
+                    print('${_homeController.quantify} quntidade');
                     _homeController.submit();
                   },
                 ),
@@ -45,9 +51,13 @@ class _HomeScreen extends State<HomeScreen> {
                   itemBuilder: _buildList,
                 )),
                 RaisedButton(
-                  onPressed: (){_homeController.addListBottles();},
+                  onPressed: () {
+                    _homeController.addListBottles();
+                  },
                   child: Text('Enviar'),
-                  ),
+                ),
+                Text(
+                    'Resposta: ${_homeController.stringResponse()} Sobrou: ${_homeController.rest == null ? '' : _homeController.rest}L'),
               ],
             ),
           );
@@ -65,7 +75,6 @@ class _HomeScreen extends State<HomeScreen> {
           controller: _homeController.bottlesController[index],
           decoration: InputDecoration(),
         )),
-        
       ],
     );
   }
