@@ -16,12 +16,21 @@ class HomeController extends ChangeNotifier {
   List<double> get valuesResponse => this._valuesResponse;
   set valuesresponse(List<double> list) {
     this._valuesResponse = list;
+    notifyListeners();
+  }
+
+  String get response => this._response;
+
+  set response(String response){
+    this._response = response;
+    notifyListeners();
   }
 
   double get rest => this._rest;
 
   set rest(double rest){
     this._rest = rest;
+    notifyListeners();
   }
 
   get quantifyController => this._quantifyController;
@@ -82,10 +91,6 @@ class HomeController extends ChangeNotifier {
       else
         return -1;
     });
-
-    for (var x in bottles) {
-      print('valores $x');
-    }
   }
 
   addListBottles() {
@@ -95,6 +100,7 @@ class HomeController extends ChangeNotifier {
     for (TextEditingController x in bottlesController) {
       this._bottles.add(double.parse(x.value.text));
     }
+    bottlesController = [];
 
     organizeLargerToSmaller();
     verifyFillGallon();
@@ -102,6 +108,7 @@ class HomeController extends ChangeNotifier {
 
   verifyFillGallon() {
     for (double value in bottles) {
+      print('valores $value');
       if (gallon - value >= 0) {
         gallon = gallon - value;
         valuesResponse.add(value);
@@ -113,15 +120,20 @@ class HomeController extends ChangeNotifier {
       valuesResponse.add(smaller);
       rest = smaller - gallon;
     }
+
+    gallon = double.parse(gallonController.value.text);
+    quantify = int.parse(quantifyController.value.text);
   }
 
   String stringResponse() {
-    this._response = '';
+    response = '';
 
     for (int i = 0; i < valuesResponse.length; i++) {
-      this._response += i == (valuesResponse.length - 1)
+      print('valores resposta ${valuesResponse[i]}');
+      response += i == (valuesResponse.length - 1)
           ? '${valuesResponse[i]}L'
           : '${valuesResponse[i]}L, ';
+      print(response);
     }
 
     return this._response;
