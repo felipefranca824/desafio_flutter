@@ -1,26 +1,26 @@
 import 'package:flutter/widgets.dart';
 
 class HomeController extends ChangeNotifier{
-  int _quantidaGarrafas = 0;
-  int _galao;
-  List<double> _garrafas;
+  int _quantify = 0;
+  int _gallon;
+  List<double> _bottles;
 
-  set quantidade(int value){
-    this._quantidaGarrafas = value;
+  set quantify(int value){
+    this._quantify = value;
     notifyListeners();
   }
-  get quantidade => this._quantidaGarrafas;
+  get quantify => this._quantify;
 
-  set galao(int value){
-    this._galao = value;
+  set gallon(int value){
+    this._gallon = value;
     notifyListeners();
   }
-  get galao => this._galao;
+  get gallon => this._gallon;
 
-  set garrafas(double value){
-    this._garrafas.add(value);
+  set bottles(double value){
+    this._bottles.add(value);
     notifyListeners();
   }
-  get garragas => this._garrafas;
+  get bottles => this._bottles;
 
 }

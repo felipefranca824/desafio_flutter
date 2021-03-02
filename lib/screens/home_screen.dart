@@ -1,4 +1,5 @@
 
+import 'package:desafio_galoes/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -9,7 +10,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreen extends State<HomeScreen> {
- 
+  HomeController _homeController = HomeController();
   @override
   Widget build(BuildContext context) {
     
