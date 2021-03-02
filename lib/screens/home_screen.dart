@@ -50,14 +50,14 @@ class _HomeScreen extends State<HomeScreen> {
                   itemCount: _homeController.quantify,
                   itemBuilder: _buildList,
                 )),
+                Text(
+                    'Resposta: ${_homeController.stringResponse()} Sobrou: ${_homeController.rest == null ? '' : _homeController.rest}'),
                 RaisedButton(
                   onPressed: () {
                     _homeController.addListBottles();
                   },
                   child: Text('Enviar'),
                 ),
-                Text(
-                    'Resposta: ${_homeController.stringResponse()} Sobrou: ${_homeController.rest == null ? '' : _homeController.rest}L'),
               ],
             ),
           );
@@ -72,6 +72,7 @@ class _HomeScreen extends State<HomeScreen> {
         Text('Garrafa ${index + 1}'),
         Expanded(
             child: TextField(
+              keyboardType: TextInputType.number,
           controller: _homeController.bottlesController[index],
           decoration: InputDecoration(),
         )),
